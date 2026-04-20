@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <!-- SEO & brand -->
     <title>Firecraft Pizza · Wood‑fired Neapolitan · Krugersdorp</title>
     <meta name="description" content="Firecraft Pizza – Authentic wood-fired pizza in Bell Drive Crossing, Krugersdorp. Dine-in, takeaway & delivery. Premium ingredients, handcrafted quality.">
-    <!-- Fonts, icons, AOS -->
+    <!-- Fonts & icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -55,10 +54,7 @@
             display: flex; align-items: center; justify-content: space-between;
             max-width: 1400px; margin: 0 auto;
         }
-        .logo {
-            display: flex; align-items: center; gap: 8px;
-            text-decoration: none;
-        }
+        .logo { display: flex; align-items: center; text-decoration: none; }
         .logo-img {
             height: 48px; width: auto;
             filter: drop-shadow(0 0 8px var(--flame-orange));
@@ -90,9 +86,17 @@
             background: radial-gradient(circle at 30% 40%, rgba(20,10,5,0.6) 0%, #0B0A0A 100%);
             z-index: 1;
         }
-        .hero-content { position: relative; z-index: 2; max-width: 800px; text-align: center; animation: fadeUp 1.2s; }
-        .hero h1 { font-size: 5rem; font-weight: 800; line-height: 1.1; text-shadow: 0 4px 30px black; margin-bottom: 1.5rem; }
-        .flame-accent { color: var(--flame-orange); text-shadow: 0 0 20px var(--flame-orange); }
+        .hero-content {
+            position: relative; z-index: 2; max-width: 900px; text-align: center;
+            animation: fadeUp 1.2s; display: flex; flex-direction: column; align-items: center;
+        }
+        .hero-logo {
+            max-width: 85%;
+            width: 550px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 30px rgba(232, 93, 36, 0.5));
+        }
         .hero-sub { font-size: 1.4rem; margin-bottom: 2.5rem; opacity: 0.9; }
         .cta-group { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
         .btn-primary {
@@ -143,12 +147,12 @@
         .map-container { border-radius: 28px; overflow: hidden; box-shadow: var(--glass-shadow); }
 
         .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
-        .gallery-slot {
-            aspect-ratio: 1/1; background: #1f1c1a; border-radius: 20px;
-            border: 1px dashed rgba(232,93,36,0.4);
-            display: flex; align-items: center; justify-content: center;
-            color: #aaa; font-size: 0.9rem;
+        .gallery-item {
+            aspect-ratio: 1/1; background-size: cover; background-position: center;
+            border-radius: 20px; box-shadow: 0 8px 20px #00000055;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
+        .gallery-item:hover { transform: scale(1.02); box-shadow: 0 0 0 2px var(--flame-orange), 0 15px 30px black; }
 
         footer { background: #0A0808; border-top: 1px solid #2a1e18; padding: 3rem 5%; }
         .footer-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
@@ -161,7 +165,7 @@
         @keyframes fadeUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
         @media (max-width: 768px) {
             h2 { font-size: 2.2rem; }
-            .hero h1 { font-size: 3.2rem; }
+            .hero-logo { width: 90%; max-width: 400px; }
             .nav-links { display: none; flex-direction: column; background: rgba(10,9,8,0.95); backdrop-filter: blur(30px); position: absolute; top: 70px; left: 0; width: 100%; padding: 2rem; gap: 1.5rem; border-bottom: 1px solid var(--flame-orange); }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
@@ -178,8 +182,7 @@
 <nav class="navbar">
     <div class="nav-container">
         <a href="#" class="logo">
-            <!-- 🔥 REPLACE src WITH YOUR LOGO PNG URL -->
-            <img src="https://via.placeholder.com/160x48/0B0A0A/E85D24?text=Firecraft+Logo" alt="Firecraft Pizza" class="logo-img" id="logoImage">
+            <img src="https://raw.githubusercontent.com/tlhompo99/Firecraft-Pizza/refs/heads/main/pizza%20logo.png" alt="Firecraft Pizza" class="logo-img">
         </a>
         <div class="nav-links" id="navLinks">
             <a href="#menu">Menu</a>
@@ -193,11 +196,11 @@
     </div>
 </nav>
 
-<!-- Hero -->
+<!-- Hero (Logo replaces headline) -->
 <section class="hero" id="home">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-        <h1><span class="flame-accent">Crafted by Fire.</span><br> Perfected by Taste.</h1>
+        <img src="https://raw.githubusercontent.com/tlhompo99/Firecraft-Pizza/refs/heads/main/pizza%20logo.png" alt="Firecraft Pizza" class="hero-logo">
         <p class="hero-sub">Authentic wood-fired pizza · Bell Drive Crossing, Krugersdorp</p>
         <div class="cta-group">
             <a href="#" class="btn-primary" id="orderNowHero"><i class="fas fa-fire"></i> Order Now</a>
@@ -301,7 +304,7 @@
     </div>
 </section>
 
-<!-- Catering Enquiry (new) -->
+<!-- Catering Enquiry -->
 <section id="catering" class="section">
     <div class="glass-card" style="text-align:center;" data-aos="fade-up">
         <h2 style="margin-top:0;">🥂 Catering Enquiry – Get a Quote</h2>
@@ -313,15 +316,14 @@
     </div>
 </section>
 
-<!-- Gallery (blank slots) -->
+<!-- Gallery (The Vibe) -->
 <section class="section">
-    <div class="section-title"><h2>The Vibe</h2></div>
+    <div class="section-title" data-aos="fade-up"><h2>The Vibe</h2></div>
     <div class="gallery-grid">
-        <div class="gallery-slot">🖼️ Image slot 1</div>
-        <div class="gallery-slot">🖼️ Image slot 2</div>
-        <div class="gallery-slot">🖼️ Image slot 3</div>
+        <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/tlhompo99/Firecraft-Pizza/refs/heads/main/Screenshot%202026-04-19%20220244.png');"></div>
+        <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/tlhompo99/Firecraft-Pizza/refs/heads/main/Screenshot%202026-04-19%20220255.png');"></div>
+        <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/tlhompo99/Firecraft-Pizza/refs/heads/main/Screenshot%202026-04-19%20220309.png');"></div>
     </div>
-    <p style="text-align:center; margin-top:1rem; opacity:0.6;">📸 Your vibe pics coming soon</p>
 </section>
 
 <!-- Footer -->
@@ -331,14 +333,21 @@
             <div class="logo" style="margin-bottom:1rem;"><i class="fas fa-fire" style="color:var(--flame-orange);"></i> Firecraft Pizza</div>
             <p>© 2025 Firecraft. Crafted by fire.</p>
             <div style="margin-top:1rem;">
-                <a href="https://www.facebook.com/firecraftpizzafoodtruck" target="_blank" style="color:var(--flame-orange); margin-right:1rem;"><i class="fab fa-facebook fa-lg"></i></a>
-                <a href="https://www.instagram.com/firecraftpizzajhb" target="_blank" style="color:var(--flame-orange); margin-right:1rem;"><i class="fab fa-instagram fa-lg"></i></a>
-                <a href="https://www.tiktok.com/@firecraftpizzajhb" target="_blank" style="color:var(--flame-orange); margin-right:1rem;"><i class="fab fa-tiktok"></i></a>
-                <a href="https://x.com/firecraftpizza" target="_blank" style="color:var(--flame-orange);"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/firecraftpizzafoodtruck" target="_blank" rel="noopener" style="color:var(--flame-orange); margin-right:1rem;"><i class="fab fa-facebook fa-lg"></i></a>
+                <a href="https://www.instagram.com/firecraftpizzajhb" target="_blank" rel="noopener" style="color:var(--flame-orange); margin-right:1rem;"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="https://www.tiktok.com/@firecraftpizzajhb" target="_blank" rel="noopener" style="color:var(--flame-orange); margin-right:1rem;"><i class="fab fa-tiktok"></i></a>
+                <a href="https://x.com/firecraftpizza" target="_blank" rel="noopener" style="color:var(--flame-orange);"><i class="fab fa-x-twitter"></i></a>
             </div>
         </div>
-        <div><strong>Quick links</strong><br><a href="#menu" style="color:#ccc;">Menu</a><br><a href="#catering" style="color:#ccc;">Catering</a></div>
-        <div><i class="fas fa-map-marker-alt"></i> Bell Drive Crossing, Krugersdorp</div>
+        <div>
+            <strong>Quick links</strong><br>
+            <a href="#menu" style="color:#ccc;">Menu</a><br>
+            <a href="#catering" style="color:#ccc;">Catering</a>
+        </div>
+        <div>
+            <i class="fas fa-map-marker-alt"></i> Bell Drive Crossing, Krugersdorp<br>
+            <span style="opacity:0.7; font-size:0.9rem;">Website developed by: <a href="https://websolutionssa.com" target="_blank" style="color:var(--flame-orange);">websolutionssa.com</a></span>
+        </div>
     </div>
 </footer>
 
@@ -358,10 +367,10 @@
     toggle.addEventListener('click', () => navLinks.classList.toggle('active'));
     document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('active')));
 
-    // Dynamic hours (open/closed based on current time)
+    // Dynamic hours
     function updateHours() {
         const now = new Date();
-        const day = now.getDay(); // 0 sun, 1 mon ... 6 sat
+        const day = now.getDay();
         const hour = now.getHours();
         const minute = now.getMinutes();
         const time = hour * 60 + minute;
@@ -370,13 +379,13 @@
         const hoursEl = document.getElementById('dynamicHours');
         
         const schedule = {
-            1: { open: 11*60, close: 20*60 }, // mon
+            1: { open: 11*60, close: 20*60 },
             2: { open: 11*60, close: 20*60 },
             3: { open: 11*60, close: 20*60 },
             4: { open: 11*60, close: 20*60 },
-            5: { open: 11*60, close: 21*60 }, // fri
-            6: { open: 11*60, close: 21*60 }, // sat
-            0: { open: 12*60, close: 20*60 }  // sun
+            5: { open: 11*60, close: 21*60 },
+            6: { open: 11*60, close: 21*60 },
+            0: { open: 12*60, close: 20*60 }
         };
         const today = schedule[day];
         if (today) {
@@ -388,7 +397,8 @@
                 else {
                     let nextDay = (day+1)%7;
                     let next = schedule[nextDay];
-                    nextOpen = `Opens ${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][nextDay]} at ${Math.floor(next.open/60)}:${String(next.open%60).padStart(2,'0')}`;
+                    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+                    nextOpen = `Opens ${days[nextDay]} at ${Math.floor(next.open/60)}:${String(next.open%60).padStart(2,'0')}`;
                 }
             }
         }
@@ -398,16 +408,14 @@
     updateHours();
     setInterval(updateHours, 60000);
 
-    // WhatsApp order links
-    const whatsappNumber = "27763181151";
-    const orderMessage = "Hi Firecraft, I'd like to place an order!";
-    const orderLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderMessage)}`;
-    document.querySelectorAll('#orderNowNav, #orderNowHero, .nav-order-btn').forEach(el => {
-        if (el) el.setAttribute('href', orderLink);
-    });
+    // WhatsApp order
+    const waNumber = "27763181151";
+    const orderMsg = "Hi Firecraft, I'd like to place an order!";
+    const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(orderMsg)}`;
+    document.querySelectorAll('#orderNowNav, #orderNowHero, .nav-order-btn').forEach(el => el.setAttribute('href', waLink));
 
-    // Menu modal: set image URL (user to replace)
-    const menuImageUrl = "https://via.placeholder.com/800x1000/1a1a1a/E85D24?text=Your+Menu+Image+Here"; // <-- REPLACE WITH YOUR MENU IMAGE URL
+    // Menu modal
+    const menuImageUrl = "https://raw.githubusercontent.com/tlhompo99/Firecraft-Pizza/refs/heads/main/menu.jpeg";
     const modal = document.getElementById('menuModal');
     const modalImg = document.getElementById('modalMenuImg');
     const viewMenuBtn = document.getElementById('viewFullMenuBtn');
@@ -424,17 +432,10 @@
     closeModal.onclick = () => modal.style.display = "none";
     window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
 
-    // Google Review link (updated to real place ID? using search link as fallback, but you can update)
+    // Google Review link
     const reviewBtn = document.getElementById('writeReviewBtn');
-    // Real place ID would be ideal. We'll set a working Google Maps review link (search)
-    reviewBtn.href = "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4"; // ← Replace with actual place ID if known
-    // Also fallback: if placeid unknown, direct to maps:
-    // reviewBtn.href = "https://www.google.com/maps/place/Firecraft+Pizza/@-26.083,27.896,17z";
-
-    // Logo: user will replace src via editing or we can provide a data attribute
-    console.log('Ready — replace logo PNG and menu image URL.');
+    reviewBtn.href = "https://www.google.com/maps/place/Firecraft+Pizza/@-26.083,27.896,17z";
 </script>
-<!-- Additional responsiveness: sticky padding -->
 <style>html { scroll-padding-top: 80px; }</style>
 </body>
 </html>
