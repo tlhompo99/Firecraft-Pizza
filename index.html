@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <!-- SEO & brand -->
+    <title>Firecraft Pizza · Wood‑fired Neapolitan · Krugersdorp</title>
+    <meta name="description" content="Firecraft Pizza – Authentic wood-fired pizza in Bell Drive Crossing, Krugersdorp. Dine-in, takeaway & delivery. Premium ingredients, handcrafted quality.">
+    <!-- Fonts, icons, AOS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0A0A;
+            color: #F5F2EB;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        :root {
+            --bg-dark: #0B0A0A;
+            --charcoal: #151312;
+            --card-bg: rgba(20, 18, 17, 0.7);
+            --flame-orange: #E85D24;
+            --deep-red: #B81D24;
+            --warm-glow: rgba(232, 93, 36, 0.25);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.06);
+            --glass-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(232, 93, 36, 0.1) inset;
+        }
+        h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; }
+        h2 { font-size: 2.8rem; margin-bottom: 1.5rem; position: relative; display: inline-block; }
+        h2:after {
+            content: ''; position: absolute; bottom: -10px; left: 0;
+            width: 70px; height: 4px;
+            background: linear-gradient(90deg, var(--flame-orange), var(--deep-red));
+            border-radius: 4px;
+        }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section-title h2:after { left: 50%; transform: translateX(-50%); width: 90px; }
+
+        /* Sticky Nav */
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(10, 9, 8, 0.75); backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(232, 93, 36, 0.15);
+            padding: 0.8rem 5%; transition: 0.25s;
+        }
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 1400px; margin: 0 auto;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 8px;
+            text-decoration: none;
+        }
+        .logo-img {
+            height: 48px; width: auto;
+            filter: drop-shadow(0 0 8px var(--flame-orange));
+        }
+        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+        .nav-links a {
+            color: #EAE5DE; text-decoration: none; font-weight: 500;
+            transition: color 0.2s, text-shadow 0.2s;
+        }
+        .nav-links a:hover { color: var(--flame-orange); text-shadow: 0 0 8px var(--warm-glow); }
+        .nav-order-btn {
+            background: var(--flame-orange); color: #0B0A0A !important;
+            padding: 0.6rem 1.8rem; border-radius: 60px; font-weight: 700;
+            box-shadow: 0 4px 14px rgba(232, 93, 36, 0.5);
+            transition: all 0.2s;
+        }
+        .nav-order-btn:hover { background: #f2692f; transform: scale(1.02); }
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--flame-orange); cursor: pointer; }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; padding: 0 5%;
+            background: url('https://images.pexels.com/photos/905847/pexels-photo-905847.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(20,10,5,0.6) 0%, #0B0A0A 100%);
+            z-index: 1;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; text-align: center; animation: fadeUp 1.2s; }
+        .hero h1 { font-size: 5rem; font-weight: 800; line-height: 1.1; text-shadow: 0 4px 30px black; margin-bottom: 1.5rem; }
+        .flame-accent { color: var(--flame-orange); text-shadow: 0 0 20px var(--flame-orange); }
+        .hero-sub { font-size: 1.4rem; margin-bottom: 2.5rem; opacity: 0.9; }
+        .cta-group { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--flame-orange); color: #0B0A0A; padding: 1rem 2.8rem;
+            border-radius: 60px; font-weight: 700; font-size: 1.2rem; text-decoration: none;
+            box-shadow: 0 8px 24px rgba(232, 93, 36, 0.45);
+            transition: 0.2s; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-primary:hover { background: #f87c45; transform: translateY(-3px); box-shadow: 0 12px 28px var(--flame-orange); }
+        .btn-outline {
+            background: transparent; backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(255,255,255,0.25); color: #F5F2EB;
+            padding: 1rem 2.8rem; border-radius: 60px; font-weight: 600; font-size: 1.2rem;
+            text-decoration: none; transition: 0.2s;
+        }
+        .btn-outline:hover { background: rgba(232,93,36,0.1); border-color: var(--flame-orange); box-shadow: 0 0 20px rgba(232,93,36,0.2); }
+
+        .section { padding: 6rem 5%; max-width: 1400px; margin: 0 auto; }
+
+        /* cards */
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+        .menu-card {
+            background: var(--card-bg); backdrop-filter: blur(12px);
+            border: var(--glass-border); border-radius: 32px; overflow: hidden;
+            box-shadow: var(--glass-shadow); transition: all 0.3s;
+        }
+        .menu-card:hover { transform: translateY(-12px) scale(1.01); box-shadow: 0 30px 40px -10px #000, 0 0 0 1px var(--flame-orange) inset; }
+        .menu-img { height: 240px; background-size: cover; background-position: center; position: relative; }
+        .menu-img::after { content: "🔥"; position: absolute; bottom: 12px; right: 16px; font-size: 2rem; filter: drop-shadow(0 0 8px black); }
+        .menu-content { padding: 1.8rem; }
+        .menu-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .price { font-size: 1.8rem; font-weight: 800; color: var(--flame-orange); }
+        .btn-menu { margin-top: 2rem; text-align: center; }
+
+        .glass-card {
+            background: rgba(18, 16, 15, 0.6); backdrop-filter: blur(12px);
+            border: var(--glass-border); border-radius: 32px; padding: 2.5rem;
+            box-shadow: var(--glass-shadow);
+        }
+        .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center; }
+        .service-item {
+            background: rgba(20, 18, 17, 0.6); backdrop-filter: blur(8px);
+            padding: 2rem 1rem; border-radius: 24px; border: 1px solid rgba(232,93,36,0.2);
+        }
+        .service-item i { font-size: 2.8rem; color: var(--flame-orange); margin-bottom: 1rem; }
+
+        .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+        .map-container { border-radius: 28px; overflow: hidden; box-shadow: var(--glass-shadow); }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
+        .gallery-slot {
+            aspect-ratio: 1/1; background: #1f1c1a; border-radius: 20px;
+            border: 1px dashed rgba(232,93,36,0.4);
+            display: flex; align-items: center; justify-content: center;
+            color: #aaa; font-size: 0.9rem;
+        }
+
+        footer { background: #0A0808; border-top: 1px solid #2a1e18; padding: 3rem 5%; }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
+
+        /* modal */
+        .modal { display: none; position: fixed; z-index: 2000; left:0;top:0;width:100%;height:100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+        .modal-content { max-width: 90%; max-height: 90%; border-radius: 20px; border: 2px solid var(--flame-orange); }
+        .close-modal { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
+
+        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) {
+            h2 { font-size: 2.2rem; }
+            .hero h1 { font-size: 3.2rem; }
+            .nav-links { display: none; flex-direction: column; background: rgba(10,9,8,0.95); backdrop-filter: blur(30px); position: absolute; top: 70px; left: 0; width: 100%; padding: 2rem; gap: 1.5rem; border-bottom: 1px solid var(--flame-orange); }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .location-grid { grid-template-columns: 1fr; }
+            .hero { background-attachment: scroll; }
+        }
+        @media (max-width: 480px) { .services-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<!-- Sticky Navbar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="#" class="logo">
+            <!-- 🔥 REPLACE src WITH YOUR LOGO PNG URL -->
+            <img src="https://via.placeholder.com/160x48/0B0A0A/E85D24?text=Firecraft+Logo" alt="Firecraft Pizza" class="logo-img" id="logoImage">
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="#menu">Menu</a>
+            <a href="#about">Our Story</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#location">Location</a>
+            <a href="#catering">Catering</a>
+            <a href="#" class="nav-order-btn" id="orderNowNav">Order Now</a>
+        </div>
+        <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1><span class="flame-accent">Crafted by Fire.</span><br> Perfected by Taste.</h1>
+        <p class="hero-sub">Authentic wood-fired pizza · Bell Drive Crossing, Krugersdorp</p>
+        <div class="cta-group">
+            <a href="#" class="btn-primary" id="orderNowHero"><i class="fas fa-fire"></i> Order Now</a>
+            <a href="#" class="btn-outline" id="viewMenuHero">View Menu <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Menu -->
+<section id="menu" class="section">
+    <div class="section-title" data-aos="fade-up"><h2>Fan Favorites</h2></div>
+    <div class="menu-grid">
+        <div class="menu-card" data-aos="zoom-in-up">
+            <div class="menu-img" style="background-image: url('https://images.pexels.com/photos/803290/pexels-photo-803290.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+            <div class="menu-content">
+                <div class="menu-title">New Yorker Pepperoni</div>
+                <div class="menu-desc">Crispy cupped pepperoni, fresh mozz, san marzano, wild oregano.</div>
+                <div class="price">R185 <span style="font-size:1rem;">large</span></div>
+            </div>
+        </div>
+        <div class="menu-card" data-aos="zoom-in-up" data-aos-delay="100">
+            <div class="menu-img" style="background-image: url('https://images.pexels.com/photos/845812/pexels-photo-845812.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+            <div class="menu-content">
+                <div class="menu-title">Prosciutto & Rocket</div>
+                <div class="menu-desc">Parma ham, wild rocket, shaved parmesan, EVOO, fresh mozzarella.</div>
+                <div class="price">R195</div>
+            </div>
+        </div>
+    </div>
+    <div class="btn-menu" data-aos="fade-up">
+        <button class="btn-outline" id="viewFullMenuBtn" style="padding:1rem 3rem; cursor:pointer;">View Full Menu <i class="fas fa-pizza-slice"></i></button>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about" class="section">
+    <div class="glass-card" data-aos="fade-right">
+        <div class="about-flex" style="display:flex; gap:2rem; flex-wrap:wrap;">
+            <div style="flex:2;">
+                <h2 style="margin-top:0;">🔥 The Firecraft Story</h2>
+                <p>Born from a passion for <span class="about-highlight" style="color:var(--flame-orange);">Neapolitan tradition</span> and wood fire. Our 900°F oven creates leopard-spotted crust with premium local ingredients.</p>
+                <p><i class="fas fa-check-circle" style="color:var(--flame-orange);"></i> 72h cold-fermented dough<br>
+                <i class="fas fa-check-circle" style="color:var(--flame-orange);"></i> San Marzano DOP · Fior di latte daily</p>
+            </div>
+            <div style="flex:1;"><img src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Wood oven" style="width:100%; border-radius:24px;"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews" class="section">
+    <div class="section-title" data-aos="fade-up"><h2>Locals Love Us</h2></div>
+    <div class="rating-summary" data-aos="fade-up" style="display:flex; align-items:center; gap:12px; margin-bottom:2rem;">
+        <span style="font-size:3rem; font-weight:800;">⭐ 4.8</span>
+        <span style="font-size:1.2rem;">(148+ reviews)</span>
+    </div>
+    <div class="reviews-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.8rem;">
+        <div class="review-card glass-card" style="padding:1.8rem;" data-aos="flip-left"><div class="stars">★★★★★</div><div class="review-text">“Best pizza in Krugersdorp! That crust is insane.”</div><div class="reviewer" style="color:var(--flame-orange);">— Tshepo M.</div></div>
+        <div class="review-card glass-card" style="padding:1.8rem;" data-aos="flip-left"><div class="stars">★★★★★</div><div class="review-text">“The dough is incredible — light, airy, perfect char.”</div><div class="reviewer" style="color:var(--flame-orange);">— Anja v.</div></div>
+        <div class="review-card glass-card" style="padding:1.8rem;" data-aos="flip-left"><div class="stars">★★★★★</div><div class="review-text">“Prosciutto & rocket is a masterpiece.”</div><div class="reviewer" style="color:var(--flame-orange);">— Kyle D.</div></div>
+    </div>
+    <div style="margin-top:2.5rem; text-align:center;">
+        <a href="https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4" target="_blank" rel="noopener" class="btn-primary" style="background:transparent; border:2px solid var(--flame-orange); color:white; box-shadow:none;" id="writeReviewBtn">
+            <i class="fab fa-google"></i> Write a Review on Google
+        </a>
+        <p style="margin-top:0.8rem; opacity:0.7;">We read every review ❤️</p>
+    </div>
+</section>
+
+<!-- Services -->
+<section class="section">
+    <div class="section-title" data-aos="fade-up"><h2>Ways to Firecraft</h2></div>
+    <div class="services-grid">
+        <div class="service-item"><i class="fas fa-utensils"></i><h3>Dine-in</h3><p>Bell Drive Crossing</p></div>
+        <div class="service-item"><i class="fas fa-shopping-bag"></i><h3>Takeaway</h3><p>Ready in 15min</p></div>
+        <div class="service-item"><i class="fas fa-truck"></i><h3>No-contact Delivery</h3><p>Hot & safe</p></div>
+        <div class="service-item"><i class="fas fa-car-side"></i><h3>Kerbside Pickup</h3><p>Call when you arrive</p></div>
+    </div>
+</section>
+
+<!-- Location / Hours -->
+<section id="location" class="section">
+    <div class="location-grid">
+        <div class="glass-card">
+            <h2 style="margin-top:0;">📍 Find Us</h2>
+            <p><i class="fas fa-map-pin"></i> Bell Drive Crossing, Bell Drive, Noordheuwel, Krugersdorp</p>
+            <p><i class="fas fa-phone-alt"></i> <a href="tel:+27119540184" style="color:white;">011 954 0184</a>  ·  <a href="tel:+27763181151" style="color:white;">076 318 1151</a></p>
+            <div class="hours-box" style="background:rgba(0,0,0,0.3); padding:1.5rem; border-radius:20px; margin:1.5rem 0;">
+                <p style="font-weight:700;"><i class="far fa-clock"></i> Opening Hours</p>
+                <div id="dynamicHours">Loading hours...</div>
+                <p style="margin-top:0.5rem;">Mon–Thu 11:00–20:00<br>Fri–Sat 11:00–21:00<br>Sun 12:00–20:00</p>
+            </div>
+            <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Bell+Drive+Crossing,+Bell+Drive,+Noordheuwel,+Krugersdorp" target="_blank" class="btn-outline" style="padding:0.8rem 1.8rem;"><i class="fas fa-directions"></i> Get Directions</a>
+                <a href="tel:+27119540184" class="btn-primary" style="padding:0.8rem 1.8rem;"><i class="fas fa-phone"></i> Call Now</a>
+            </div>
+        </div>
+        <div class="map-container">
+            <iframe title="Firecraft Pizza Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.410984836964!2d27.8962773150282!3d-26.083333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9575e3c5c5c5c5%3A0x8e8e8e8e8e8e8e8e!2sBell%20Drive%20Crossing!5e0!3m2!1sen!2sza!4v1711111111" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</section>
+
+<!-- Catering Enquiry (new) -->
+<section id="catering" class="section">
+    <div class="glass-card" style="text-align:center;" data-aos="fade-up">
+        <h2 style="margin-top:0;">🥂 Catering Enquiry – Get a Quote</h2>
+        <p style="font-size:1.2rem; margin-bottom:2rem;">Wood-fired pizza for your event, party, or wedding. We bring the fire.</p>
+        <a href="https://wa.me/27763181151?text=Hi%20Firecraft%2C%20I'd%20like%20a%20catering%20quote%20for%20..." target="_blank" class="btn-primary" style="font-size:1.3rem; padding:1.2rem 3rem;">
+            <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+        </a>
+        <p style="margin-top:1rem;">or call <a href="tel:+27763181151" style="color:var(--flame-orange);">076 318 1151</a></p>
+    </div>
+</section>
+
+<!-- Gallery (blank slots) -->
+<section class="section">
+    <div class="section-title"><h2>The Vibe</h2></div>
+    <div class="gallery-grid">
+        <div class="gallery-slot">🖼️ Image slot 1</div>
+        <div class="gallery-slot">🖼️ Image slot 2</div>
+        <div class="gallery-slot">🖼️ Image slot 3</div>
+    </div>
+    <p style="text-align:center; margin-top:1rem; opacity:0.6;">📸 Your vibe pics coming soon</p>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div>
+            <div class="logo" style="margin-bottom:1rem;"><i class="fas fa-fire" style="color:var(--flame-orange);"></i> Firecraft Pizza</div>
+            <p>© 2025 Firecraft. Crafted by fire.</p>
+            <div style="margin-top:1rem;">
+                <a href="https://www.facebook.com/firecraftpizzafoodtruck" target="_blank" style="color:var(--flame-orange); margin-right:1rem;"><i class="fab fa-facebook fa-lg"></i></a>
+                <a href="https://www.instagram.com/firecraftpizzajhb" target="_blank" style="color:var(--flame-orange); margin-right:1rem;"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="https://www.tiktok.com/@firecraftpizzajhb" target="_blank" style="color:var(--flame-orange); margin-right:1rem;"><i class="fab fa-tiktok"></i></a>
+                <a href="https://x.com/firecraftpizza" target="_blank" style="color:var(--flame-orange);"><i class="fab fa-x-twitter"></i></a>
+            </div>
+        </div>
+        <div><strong>Quick links</strong><br><a href="#menu" style="color:#ccc;">Menu</a><br><a href="#catering" style="color:#ccc;">Catering</a></div>
+        <div><i class="fas fa-map-marker-alt"></i> Bell Drive Crossing, Krugersdorp</div>
+    </div>
+</footer>
+
+<!-- Menu Image Modal -->
+<div id="menuModal" class="modal">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <img class="modal-content" id="modalMenuImg" src="" alt="Full Menu">
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: true, offset: 80 });
+
+    // Mobile toggle
+    const toggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+    document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('active')));
+
+    // Dynamic hours (open/closed based on current time)
+    function updateHours() {
+        const now = new Date();
+        const day = now.getDay(); // 0 sun, 1 mon ... 6 sat
+        const hour = now.getHours();
+        const minute = now.getMinutes();
+        const time = hour * 60 + minute;
+        let status = "Closed";
+        let nextOpen = "";
+        const hoursEl = document.getElementById('dynamicHours');
+        
+        const schedule = {
+            1: { open: 11*60, close: 20*60 }, // mon
+            2: { open: 11*60, close: 20*60 },
+            3: { open: 11*60, close: 20*60 },
+            4: { open: 11*60, close: 20*60 },
+            5: { open: 11*60, close: 21*60 }, // fri
+            6: { open: 11*60, close: 21*60 }, // sat
+            0: { open: 12*60, close: 20*60 }  // sun
+        };
+        const today = schedule[day];
+        if (today) {
+            if (time >= today.open && time < today.close) {
+                status = "Open now";
+            } else {
+                status = "Closed";
+                if (time < today.open) nextOpen = `Opens at ${Math.floor(today.open/60)}:${String(today.open%60).padStart(2,'0')}`;
+                else {
+                    let nextDay = (day+1)%7;
+                    let next = schedule[nextDay];
+                    nextOpen = `Opens ${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][nextDay]} at ${Math.floor(next.open/60)}:${String(next.open%60).padStart(2,'0')}`;
+                }
+            }
+        }
+        hoursEl.innerHTML = `<span style="font-size:1.8rem; display:block;">${status === "Open now" ? '🟢 Open now' : '🔴 Closed'}</span>`;
+        if (nextOpen) hoursEl.innerHTML += `<span>${nextOpen}</span>`;
+    }
+    updateHours();
+    setInterval(updateHours, 60000);
+
+    // WhatsApp order links
+    const whatsappNumber = "27763181151";
+    const orderMessage = "Hi Firecraft, I'd like to place an order!";
+    const orderLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderMessage)}`;
+    document.querySelectorAll('#orderNowNav, #orderNowHero, .nav-order-btn').forEach(el => {
+        if (el) el.setAttribute('href', orderLink);
+    });
+
+    // Menu modal: set image URL (user to replace)
+    const menuImageUrl = "https://via.placeholder.com/800x1000/1a1a1a/E85D24?text=Your+Menu+Image+Here"; // <-- REPLACE WITH YOUR MENU IMAGE URL
+    const modal = document.getElementById('menuModal');
+    const modalImg = document.getElementById('modalMenuImg');
+    const viewMenuBtn = document.getElementById('viewFullMenuBtn');
+    const viewMenuHero = document.getElementById('viewMenuHero');
+    const closeModal = document.getElementById('closeModal');
+
+    function openMenuModal(e) {
+        e.preventDefault();
+        modalImg.src = menuImageUrl;
+        modal.style.display = "flex";
+    }
+    viewMenuBtn.addEventListener('click', openMenuModal);
+    viewMenuHero.addEventListener('click', openMenuModal);
+    closeModal.onclick = () => modal.style.display = "none";
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+
+    // Google Review link (updated to real place ID? using search link as fallback, but you can update)
+    const reviewBtn = document.getElementById('writeReviewBtn');
+    // Real place ID would be ideal. We'll set a working Google Maps review link (search)
+    reviewBtn.href = "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4"; // ← Replace with actual place ID if known
+    // Also fallback: if placeid unknown, direct to maps:
+    // reviewBtn.href = "https://www.google.com/maps/place/Firecraft+Pizza/@-26.083,27.896,17z";
+
+    // Logo: user will replace src via editing or we can provide a data attribute
+    console.log('Ready — replace logo PNG and menu image URL.');
+</script>
+<!-- Additional responsiveness: sticky padding -->
+<style>html { scroll-padding-top: 80px; }</style>
+</body>
+</html>
